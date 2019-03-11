@@ -1,10 +1,10 @@
 let activeEnv = process.env.ACTIVE_ENV || process.env.NODE_ENV || "development"
 
-(activeEnv === 'development' &&
-require("dotenv").config({
-  path: `.env.${activeEnv}`,
-}))
-
+if (activeEnv === 'development') {
+  require("dotenv").config({
+    path: `.env.${activeEnv}`,
+  });  
+}
 
 module.exports = {
   siteMetadata: {
