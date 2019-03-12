@@ -27,7 +27,8 @@ export default class IndexPage extends React.Component {
                 <Link className="has-text-primary" to={post.slug}>
                   {post.title}
                 </Link>
-                <span> &bull; </span>
+              </p>
+              <p>
                 <small>
                   {post.date} - posted by{' '}
                   <Link to={`/author/${post.author.slug}`}>
