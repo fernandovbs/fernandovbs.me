@@ -1,0 +1,11 @@
+.featured {
+    position: relative;
+    margin:auto;
+    width:300px;
+    height: auto;
+    margin-bottom: 30px;
+}
+
+.featured img{
+    border-radius: 10%;
+}

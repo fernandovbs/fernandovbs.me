@@ -1,4 +1,12 @@
 .thumbnail {
-    max-width:300px;
+    display: inline-block;
+    width:75px;
     height: auto;
+}
+.post_data {
+    margin-left: 20px;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 4em;
+    font-size:1.2em;
 }

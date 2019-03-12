@@ -7,7 +7,7 @@ import layoutStyles from './layout.module.css'
 
 const TemplateWrapper = ({ children }) => (
   <div className={layoutStyles.container}>
-    <Helmet title="Home | Gatsby + WordPress" />
+    <Helmet title="Home | Fernando Souza" />
     <Navbar />
     <div>{children}</div>
   </div>

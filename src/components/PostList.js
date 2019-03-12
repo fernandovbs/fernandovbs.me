@@ -12,7 +12,7 @@ export default class IndexPage extends React.Component {
       <section className="section">
         <div className="container">
           <div className="content">
-            <h2 className="has-text-weight-bold is-size-2">{title}</h2>
+            <h2 className="has-text-weight-bold is-size-3">{title}</h2>
           </div>
           {posts.map(({ node: post }) => (
             <div
@@ -23,7 +23,7 @@ export default class IndexPage extends React.Component {
               <div className={postlistStyles.thumbnail}>
                 <Image fluid={post.featured_media.localFile.childImageSharp.fluid} />
               </div>
-              <p>
+              <p className={postlistStyles.post_data}>
                 <Link className="has-text-primary" to={post.slug}>
                   {post.title}
                 </Link>
@@ -41,9 +41,6 @@ export default class IndexPage extends React.Component {
                     __html: post.excerpt.replace(/<p class="link-more.*/, ''),
                   }}
                 />
-                <Link className="button is-small" to={post.slug}>
-                  Keep Reading →
-                </Link>
               </div>
             </div>
           ))}
