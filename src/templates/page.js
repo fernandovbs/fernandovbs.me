@@ -14,9 +14,7 @@ export const PageTemplate = ({ title, content, featured_media }) => {
         <div className="columns">
           <div className="column is-10 is-offset-1">
             <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                {title}
-              </h2>
+              <h2 className="title is-size-3 has-text-weight-bold is-bold-light" dangerouslySetInnerHTML={{ __html: title}}></h2>
               <div className={pageStyles.featured}>
               <Image fluid={featured} />
               </div>
