@@ -9,6 +9,13 @@ export const PageTemplate = ({ title, content, featured_media }) => {
   const featured = featured_media.localFile.childImageSharp.fluid;
   const decodedTitle = htmlDecode(title)
 
+  function htmlDecode(input) {
+    var e = document.createElement('div');
+    e.innerHTML = input;
+    // handle case of empty input
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+  }
+
   return (
     <section className="section section--gradient">
       <div className="container">
