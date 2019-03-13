@@ -8,6 +8,13 @@ export default class IndexPage extends React.Component {
   render() {
     const { posts, title } = this.props
 
+    function htmlDecode(input) {
+      var e = document.createElement('div');
+      e.innerHTML = input;
+      // handle case of empty input
+      return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
     return (
       <section className="section">
         <div className="container">
@@ -25,7 +32,7 @@ export default class IndexPage extends React.Component {
               </div>
               <p className={postlistStyles.post_data}>
                 <Link className="has-text-primary" to={post.slug}>
-                  {post.title}
+                  {htmlDecode(post.title)}
                 </Link>
               </p>
               <p>
