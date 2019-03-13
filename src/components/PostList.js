@@ -3,17 +3,11 @@ import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 import Image from 'gatsby-image'
 import postlistStyles from './postlist.module.css'
+import XmlEntities from 'html-entities'
 
 export default class IndexPage extends React.Component {
   render() {
     const { posts, title } = this.props
-
-    function htmlDecode(input) {
-      var e = document.createElement('div');
-      e.innerHTML = input;
-      // handle case of empty input
-      return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
 
     return (
       <section className="section">
@@ -21,7 +15,10 @@ export default class IndexPage extends React.Component {
           <div className="content">
             <h2 className="has-text-weight-bold is-size-3">{title}</h2>
           </div>
-          {posts.map(({ node: post }) => (
+          {posts.map(({ node: post }) => { 
+            const decodedTitle = XmlEntities.XmlEntities.decode(post.title)
+            return (
+
             <div
               className="content"
               style={{ border: '1px solid #eaecee', padding: '2em 4em' }}
@@ -31,9 +28,7 @@ export default class IndexPage extends React.Component {
                 <Image fluid={post.featured_media.localFile.childImageSharp.fluid} />
               </div>
               <p className={postlistStyles.post_data}>
-                <Link className="has-text-primary" to={post.slug}>
-                  {htmlDecode(post.title)}
-                </Link>
+                <Link className="has-text-primary" to={post.slug} dangerouslySetInnerHTML={{__html: decodedTitle}}></Link>
               </p>
               <p>
                 <small>
@@ -43,15 +38,8 @@ export default class IndexPage extends React.Component {
                   </Link>
                 </small>
               </p>
-              <div>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: post.excerpt.replace(/<p class="link-more.*/, ''),
-                  }}
-                />
-              </div>
             </div>
-          ))}
+          )})}
         </div>
       </section>
     )

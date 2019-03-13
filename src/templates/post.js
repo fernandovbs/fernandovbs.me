@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
+import XmlEntities from 'html-entities'
 
 export const BlogPostTemplate = ({
   content,
@@ -12,23 +13,15 @@ export const BlogPostTemplate = ({
   date,
   author,
 }) => {
-  const decodedTitle = htmlDecode(title)
 
-  function htmlDecode(input) {
-    var e = document.createElement('div');
-    e.innerHTML = input;
-    // handle case of empty input
-    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-  }
+  const decodedTitle = XmlEntities.XmlEntities.decode(title)
     
   return (
     <section className="section">
       <div className="container content">
         <div className="columns">
           <div className="column is-10 is-offset-1">
-            <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-              {decodedTitle}
-            </h2>
+            <h2 className="title is-size-3 has-text-weight-bold is-bold-light" dangerouslySetInnerHTML={{__html: decodedTitle}}></h2>
             <div dangerouslySetInnerHTML={{ __html: content }} />
             <div style={{ marginTop: `4rem` }}>
               <p>

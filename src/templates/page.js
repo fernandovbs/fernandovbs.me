@@ -4,17 +4,11 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Image from 'gatsby-image'
 import pageStyles from '../components/page.module.css'
+import XmlEntities from 'html-entities'
 
 export const PageTemplate = ({ title, content, featured_media }) => {
   const featured = featured_media.localFile.childImageSharp.fluid;
-  const decodedTitle = htmlDecode(title)
-
-  function htmlDecode(input) {
-    var e = document.createElement('div');
-    e.innerHTML = input;
-    // handle case of empty input
-    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-  }
+  const decodedTitle = XmlEntities.XmlEntities.decode(title)
 
   return (
     <section className="section section--gradient">
@@ -22,9 +16,7 @@ export const PageTemplate = ({ title, content, featured_media }) => {
         <div className="columns">
           <div className="column is-10 is-offset-1">
             <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light" >
-                {decodedTitle}
-              </h2>
+              <h2 className="title is-size-3 has-text-weight-bold is-bold-light" dangerouslySetInnerHTML={{__html: decodedTitle}}></h2>
               <div className={pageStyles.featured}>
               <Image fluid={featured} />
               </div>
