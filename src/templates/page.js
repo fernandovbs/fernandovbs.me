@@ -7,14 +7,14 @@ import pageStyles from '../components/page.module.css'
 
 export const PageTemplate = ({ title, content, featured_media }) => {
   const featured = featured_media.localFile.childImageSharp.fluid;
-  const title = htmlDecode(title)
+  const decodedTitle = htmlDecode(title)
   return (
     <section className="section section--gradient">
       <div className="container">
         <div className="columns">
           <div className="column is-10 is-offset-1">
             <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light" dangerouslySetInnerHTML={{ __html: title}}></h2>
+              <h2 className="title is-size-3 has-text-weight-bold is-bold-light" dangerouslySetInnerHTML={{ __html: decodedTitle}}></h2>
               <div className={pageStyles.featured}>
               <Image fluid={featured} />
               </div>
